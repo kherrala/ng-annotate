@@ -57,7 +57,8 @@ function matchMaterialShowModalOpen(node) {
     const args = node.arguments;
 
     if (obj.type === "Identifier" &&
-        ((obj.name === "$modal" && method.name === "open") || (is.someof(obj.name, ["$mdDialog", "$mdToast", "$mdBottomSheet"]) && method.name === "show")) &&
+        ((obj.name === "$uibModal" && method.name === "open") || (obj.name === "$modal" && method.name === "open") ||
+        (is.someof(obj.name, ["$mdDialog", "$mdToast", "$mdBottomSheet"]) && method.name === "show")) &&
         args.length === 1 && args[0].type === "ObjectExpression") {
         const props = args[0].properties;
         const res = [matchProp("controller", props)];
